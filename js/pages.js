@@ -139,15 +139,14 @@ ${S("pad", `<span class="lbl">Customer words · fictional</span><div class="owl-
       const io = new IntersectionObserver(([x]) => {
         if (!x.isIntersecting) return;
         io.disconnect();
-        let t = 0;
-        const iv = setInterval(() => {
-          t += 1 / 30;
-          if (t >= 1) {
-            t = 1;
-            clearInterval(iv);
-          }
-          el.textContent = (n * t).toFixed(d);
-        }, 30);
+        let s0 = null;
+        const tick = (ts) => {
+          s0 = s0 || ts;
+          const k = Math.min(1, (ts - s0) / 1400);
+          el.textContent = (n * (k === 1 ? 1 : 1 - Math.pow(2, -10 * k))).toFixed(d);
+          if (k < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
       });
       io.observe(el);
     });

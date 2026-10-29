@@ -1087,3 +1087,20 @@ img {
   position: absolute;
   inset: 0;
 }
+
+/* ---- fx layer (cinematic upgrade) ---- */
+.fxc{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:screen;opacity:0;transition:opacity 1.8s var(--e);pointer-events:none}
+.fxc.on{opacity:.9}
+.hl{animation:resolve 1.3s var(--e) backwards}
+@keyframes resolve{from{filter:blur(14px);opacity:0}to{filter:blur(0);opacity:1}}
+.pin .st.on{animation:stIn .8s var(--e)}
+@keyframes stIn{from{opacity:0;transform:translateY(24px)}}
+.btn-n{position:relative;overflow:hidden}
+.btn-n::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-120%);pointer-events:none}
+.btn-n:hover::before{transform:translateX(120%);transition:transform .9s var(--e)}
+.vc::after{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--e);pointer-events:none}
+.vc:hover::after{transform:scaleX(1)}
+@media (hover:hover){
+  .vc::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(217,108,63,.13),transparent 60%)}
+  .vc:hover::before{opacity:1}
+}
